@@ -19,18 +19,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        orderTypeTakeoutButton = this.findViewById(R.id.takeoutButton)
-        orderTypeDeliveryButton = this.findViewById(R.id.deliveryButton)
-
-        orderTypeDeliveryButton.setOnClickListener{
-            state.orderType = "delivery"
-        }
 
         setContentView(R.layout.activity_main)
 
         val viewPager: ViewPager2 = findViewById(R.id.viewPager)
         val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = pagerAdapter
+
+        orderTypeTakeoutButton = this.findViewById(R.id.takeoutButton)
+        orderTypeDeliveryButton = this.findViewById(R.id.deliveryButton)
+
+        orderTypeDeliveryButton.setOnClickListener{
+            state.orderType = "delivery"
+        }
+        orderTypeDeliveryButton.setOnClickListener{
+            state.orderType = "takeout"
+        }
+
     }
 
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle) {
